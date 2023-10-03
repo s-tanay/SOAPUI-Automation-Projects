@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="b7192d94-172a-4eb9-91f2-47edc001b6c8" activeEnvironment="Default" name="MyDatabaseDemo" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:testSuite id="4697fbab-0f2c-468e-bf06-80ed48dc46fd" name="databaseDemo_TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="1e5b3423-ab4a-468b-8868-84409d0182ca" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getActorDetails_JDBCtestStep" searchProperties="true"><con:settings/><con:testStep type="groovy" name="executingJDBCStepGroovy Script" id="6cf5c99f-7a77-4825-aff9-cd2c441b8037"><con:settings/><con:config><script>import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+def Proj = null
+def workspace = testRunner.testCase.testSuite.project.getWorkspace();
+Proj= workspace.getProjectByName("MyDatabaseDemo")   
+def ProjTestCase = Proj.testSuites["databaseDemo_TestSuite"].testCases["getActorDetails_JDBCtestStep"]
+
+def DBTestStepallactordetails = ProjTestCase.getTestStepByName("allactordetails")
+def DBTestStepaddingcondition = ProjTestCase.getTestStepByName("LastnameConstraint")
+def DBTestStepcountrydetails = ProjTestCase.getTestStepByName("countrydetails")
+def DBTestStepCheckCountry = ProjTestCase.getTestStepByName("CheckCountry")
+
+
+
+def runner1 =  new WsdlTestRunContext(DBTestStepallactordetails)
+log.info "The result is    "  + DBTestStepallactordetails.run(testRunner, runner1)
+
+def runner2 =  new WsdlTestRunContext(DBTestStepaddingcondition)
+log.info "The result is    "  + DBTestStepaddingcondition.run(testRunner, runner2)
+
+def runner3 =  new WsdlTestRunContext(DBTestStepcountrydetails)
+log.info "The result is    "  + DBTestStepcountrydetails.run(testRunner, runner3)
+
+def runner4 =  new WsdlTestRunContext(DBTestStepCheckCountry)
+log.info "The result is    "  + DBTestStepCheckCountry.run(testRunner, runner4)</script></con:config></con:testStep><con:testStep type="jdbc" name="allactordetails" id="cdaf8200-cf2f-4b55-8099-108b540484b4"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234</con:connectionString><con:query>select * from actor</con:query><con:assertion type="JDBC Status" id="e46850a8-0e28-4097-baf1-373769a4e8e2" name="JDBC Status"/><con:assertion type="Response SLA Assertion" id="6526a48e-1c4c-4af6-b509-0a7bc5db5827" name="Response SLA"><con:configuration><SLA>1</SLA></con:configuration></con:assertion><con:properties/></con:config></con:testStep><con:testStep type="jdbc" name="LastnameConstraint" id="024cee73-5a3b-4244-ab5b-023ae1f82585"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234</con:connectionString><con:query>select *  from Actor where ACTOR.LAST_NAME= 'GUINESS'</con:query><con:assertion type="JDBC Status" id="e1977ebf-3bdb-43c3-86fd-c9aacb003693" name="JDBC Status"/><con:properties/></con:config></con:testStep><con:testStep type="jdbc" name="countrydetails" id="c50597c1-8e31-40bd-8e7f-255a0fffea48"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234</con:connectionString><con:query>select * from country where COUNTRY.COUNTRY LIKE 'A%' </con:query><con:assertion type="JDBC Status" id="4cdbbb3c-1bbd-41c9-bb8a-4bdc183df295" name="JDBC Status"/><con:properties/></con:config></con:testStep><con:testStep type="jdbc" name="CheckCountry" id="9a6849d8-9e9d-4e86-a538-e2e1f164a319"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234</con:connectionString><con:query>select * from country where COUNTRY.COUNTRY=:name </con:query><con:assertion type="JDBC Status" id="9c022134-3fd9-4cf0-afa1-64e06c6a9701" name="JDBC Status"/><con:properties><con:property><con:name>name</con:name><con:value>Algeria</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="8c3f6910-7523-4c1d-b30d-13a5710c0212" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GroovyScript_JDBCEnvironmentSetup" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="df4da915-ebd2-4630-a61f-27a46132c27f"><con:settings/><con:config><script>/*
+DATA OF DRIVER AND CONNECTION
+def driver="com.mysql.jdbc.Driver"
+def connection="jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234"
+*/
+
+// register SQL JDBC driver
+import groovy.sql.*
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.GroovyUtils.*
+//com.eviware.soapui.support.GroovyUtils.registerJdbcDriver("com.microsoft.sqlserver.jdbc.SQLServerDriver")
+com.eviware.soapui.support.GroovyUtils.registerJdbcDriver( "com.mysql.jdbc.Driver")
+
+
+// Change the following variables for desired environment
+// They are all strings
+def serverName 	= "localhost"	              // Examples: "localhost" "127.0.0.1"
+def instance 	= "Local instance MySQL80"	   // Example: "instance1"
+def serverPort = 3306		             // currently local server host port number
+
+/*
+//Selecting instances and port to be used for execution...
+if (instance == "Local instance MySQL80")
+	serverPort = "3306"	
+else if (instance == "instance2")
+	serverPort = "43002"
+else
+	serverPort = "1433"
+
+def dbName = "sakila"
+*/
+try
+{
+	// Connect to DB
+	def driver="com.mysql.jdbc.Driver"
+     def conn="jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234"
+	def connection = Sql.newInstance(conn, driver)
+	
+	context.setProperty("dbconn",connection)
+	log.info "connected to the database: " + conn
+
+	// Documentation on commands to run: http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html
+	// Useful methods:
+	// - execute()
+	// - executeInsert()
+	// - rows()
+
+    // connection.execute("SELECT * FROM ACTOR");
+	
+	log.info "Closing connection..."
+	context.setProperty("dbconn",null)
+	// Close DB connection
+	connection.close()
+	log.info "Connection closed."
+}
+catch(Exception e)
+{
+	log.error "Could not connect to the database: " + e
+}
+
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="finaljdbcGroovy Script" id="ff9f54d6-1f45-4a58-bb2e-ecf1cb0a523f"><con:settings/><con:config><script>// import Libraries and register SQL JDBC driver
+import groovy.sql.*
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.GroovyUtils.*
+
+try
+ {
+    //Connecting to DB
+	def url = 'jdbc:mysql://localhost:3306/sakila' /* IMPORTANT: must start with jdbc:mysql:// */
+     def user = 'root'
+     def password = 'root@1234'
+     def driver = 'com.mysql.jdbc.Driver'
+
+    // Register the MySQL JDBC driver – required for Groovy to send requests to the database
+     com.eviware.soapui.support.GroovyUtils.registerJdbcDriver(driver)
+
+    // Connect to the SQL instance
+     def sql = Sql.newInstance(url, user, password, driver)
+    
+    //Connecting DB Connection 
+	context.setProperty("sql",sql)
+	log.info "connected to the database: " + sql
+
+   //Displaying all actors details
+    def result = sql.execute( "select * from actor" )  
+    log.info result
+
+/*
+def response = context.expand('${finaljdbcGroovy Script#Response}')   
+def xml = new XmlSlurper().parseText(response)   
+log.info(xml)    
+def ACTOR_ID = xml.Body.Response.sakila.actor.ACTOR_ID;   
+def FIRST_NAME = xml.Body.Response.sakila.actor.FIRST_NAME;   
+def LAST_NAME = xml.Body.Response.sakila.actor.LAST_NAME;   
+def LAST_UPDATE = xml.Body.sakila.actor.LAST_UPDATE;  
+log.info("url value: " + new Integer( ACTOR_ID.toInteger()) + " " + FIRST_NAME.toString()+ " " + LAST_NAME.toString()+ " " + LAST_UPDATE.toString() );   
+
+sql.execute( "insert into actor (ACTOR_ID, FIRST_NAME,LAST_NAME,LAST_UPDATE)  values ( ?, ?, ? ,? )",
+[ACTOR_ID.toInteger(),
+FIRST_NAME.toString(), 
+LAST_NAME.toString(),
+LAST_UPDATE.toString()] 
+)      
+*/
+
+	
+    //Closing DB Connection
+	log.info "Closing connection..."
+	context.setProperty("sql",null)
+	sql.close()
+	log.info "Connection closed."
+}
+catch(Exception e)
+{
+	log.error "Could not connect to the database: " + e
+}
+
+
+
+
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="ReadingDataGroovyScript" id="87a208c1-d4d2-4599-a161-b0ddbdbcd172"><con:settings/><con:config><script>import groovy.sql.Sql 
+com.eviware.soapui. support.GroovyUtils.registerJdbcDriver("com.mysql.jdbc.Driver")  
+// call the loadTestContext and store it in a local variable  
+def ltContext = context.LoadTestContext   
+try{    
+
+// synchronize the part of code in which you are accessing the variable.   
+synchronized(ltContext){      
+if(ltContext.sql==null){
+log.info(ltContext.sql)   
+ltContext.sql = Sql.newInstance("jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234")   } 
+
+//serialNo is the code that I want to be synchronized for the threads. 
+//check for Null   
+if(ltContext.id == null)  {   ltContext.count = 0  ltContext.sql.eachRow("select count(ACTOR_ID) from actor") {
+ row ->  ltContext.count = row[0]  
+}  
+ 
+def frow = ltContext.sql.firstRow("select * from actor ORDER BY ACTOR_ID" + " limit 1")    
+ltContext.id = frow.id;   
+ltContext.resetId = frow.id;   
+ltContext.count = ltContext.count + ltContext.id  
+
+def currentTestCase = context.testCase  currentTestCase.setPropertyValue("UserId", frow.UserId.toString())    }  
+else  { if(ltContext.id &lt; ltContext.count )  { ltContext.id = ltContext.id + 1;    
+def frow = sql.firstRow("select * from vexiereuser where id ="  +ltContext.id +" limit 1")    
+ltContext.id = frow.id;   
+
+def currentTestCase = context.testCase.currentTestCase.setPropertyValue("UserId", frow.UserId.toString()) } else {  
+ltContext.id = ltContext.resetId;  
+def currentTestCase = context.testCase  currentTestCase.setPropertyValue("UserId",ltContext.id.toString())  
+}   
+}    
+sql.close()   
+// In load test don't close the connection.   
+}  
+log.info(ltContext.id)  
+log.info(ltContext.count)    
+}catch(Exception e){
+  log.info(e); 
+} </script></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="d007a078-23f6-4e01-b232-ea52c54735a8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Looping_StorngResultset_JDBCtestStep" searchProperties="true"><con:settings/><con:testStep type="groovy" name="executingJDBCStepGroovy Script" id="142c9c8a-0dc4-4185-830c-052816a66489"><con:settings/><con:config><script>import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+import com.eviware.soapui.support.GroovyUtils.*
+com.eviware.soapui. support.GroovyUtils.registerJdbcDriver("com.mysql.jdbc.Driver")  
+import groovy.sql.Sql 
+
+
+def sql = Sql.newInstance("jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234")
+
+//def queryId= "select * from country"
+//def res = sql.firstRow(queryId)
+//def country_id = res[0].toString()
+//log.info country_id
+
+ sql.query("select * from country") { resultSet ->
+  while (resultSet.next()) {
+    def country_id = resultSet.getString('COUNTRY.COUNTRY_ID')
+    log.info country_id
+    //testRunner.testCase.setPropertyValue( "countryid" , country_id)//Testcase level property
+    testRunner.testCase.testSteps['CheckCountry'].setPropertyValue( "countryid" , country_id)//Jdbc level property
+ 
+
+def Proj = null
+def workspace = testRunner.testCase.testSuite.project.getWorkspace();
+Proj= workspace.getProjectByName("MyDatabaseDemo")   
+def ProjTestCase = Proj.testSuites["databaseDemo_TestSuite"].testCases["Looping_StorngResultset_JDBCtestStep"]
+def DBTestStepCheckCountry = ProjTestCase.getTestStepByName("CheckCountry")
+def runner1 =  new WsdlTestRunContext(DBTestStepCheckCountry)
+
+
+  }
+ }
+sql.close()
+</script></con:config></con:testStep><con:testStep type="groovy" name="calenderscript" id="9c6ebc09-3a4b-4951-9d33-18f13aa89426"><con:settings/><con:config><script>/*Calendar c1 = GregorianCalendar.getInstance()
+c1.setTime(new Date()+1)
+while (c1.get(Calendar.DAY_OF_WEEK)!=Calendar.MONDAY) {
+    c1.add(Calendar.DAY_OF_MONTH, 1)
+}
+return c1.getTime().format("yyyy-MM-dd")*/
+//=================================================================================================================
+/*
+import groovy.time.TimeCategory
+
+def dateFormat = 'yyyy-MM-dd'
+
+def getNumberInRange = { min, max -> new Random().nextInt(max + 1 - min) + min }
+
+def isTodayBeforeMay = { Calendar.MONTH &lt; 5 }
+
+def isTodayAfterJune = { Calendar.MONTH > 6 }
+
+//Get the number of days between today and given date
+def getDifferenceDays = { targetDate, closure ->
+    def strDate = closure (targetDate)
+    def futureDate = new Date().parse(dateFormat, strDate)
+    TimeCategory.minus(futureDate, new Date()).days
+}
+
+//Get the offset between today and max date i.e.,31 august
+def getOffSetDays = { date ->
+    //Need to change the date range if needed.
+    //As per OP, May to August is mentioned below
+    def max = getDifferenceDays(date) { "${it[Calendar.YEAR]}-08-31" }
+    def min = getDifferenceDays(date) { "${it[Calendar.YEAR]}-05-01" }
+    getNumberInRange(min, max)
+}
+
+
+def now = new Date()
+def nextYearNow = now.updated(year: now[Calendar.YEAR] + 1)
+
+def selected
+def finalDate
+
+log.info "Today : $now"
+log.info "Next year same date : $nextYearNow"
+
+if (isTodayBeforeMay()) {
+    selected = now    
+} else if (isTodayAfterJune()) {
+    selected = nextYearNow
+} else {
+    //It is not mentioned what should happened for the mentioned period by OP
+    throw new Error("Not implemented for the days between 1st May to 30th June")
+}
+
+def offset = getOffSetDays(selected)
+
+//Add the offset days to now
+use(TimeCategory) {
+    finalDate = now + offset.days
+}
+log.info "Final future date is : $finalDate"
+log.info "Final future date is(formatted) : ${finalDate.format(dateFormat)}"
+
+//set the date at test case level property
+context.testCase.setPropertyValue('NEXT_DATE', finalDate.format(dateFormat))
+
+*/
+//==========================================================================================================================
+ //TO USE IN PROJECT TO GENERATE RANDOM DATES.....................
+def getRandomDate(Date now, Random random) {
+  def year         = now.year + (now.month > 5 ? 1 : 0)
+  def allDates     = (new Date(year, 4, 1)..new Date(year, 7, 31))
+  def allowedDates = allDates.findAll { now &lt; it }
+
+  allowedDates[random.nextInt(allowedDates.size())]
+}
+
+// example usage
+def now    = new Date()
+def random = new Random()
+
+100.times { 
+  def today      = now + it*2
+  def randomDate = getRandomDate(now+it*3, random)
+  log.info "today: ${today.format('yyyy MMM dd')} "//==> random date: ${randomDate.format('yyyy MMM dd')}"
+}
+
+//===============================================================================================================
+/*
+import static java.util.Calendar.*
+import java.util.GregorianCalendar as Cal
+
+  def getRandomDate(Date now, Random random) {
+  def cal = new Cal(time: now)
+
+  // use current year if current date is before july, otherwise next year
+  def year         = cal.get(YEAR) + (cal.get(MONTH) > 5 ? 1 : 0)
+  def allDates     = (new Cal(year, 4, 1).time..new Cal(year, 7, 31).time)
+  def allowedDates = allDates.findAll { now &lt; it }
+
+  allowedDates[random.nextInt(allowedDates.size())]
+  }
+ 
+  */</script></con:config></con:testStep><con:testStep type="jdbc" name="countrydetails" id="523a58ee-fb96-4581-a491-2d5e04f6e3fe"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234</con:connectionString><con:query> select * from country</con:query><con:assertion type="JDBC Status" id="4cdbbb3c-1bbd-41c9-bb8a-4bdc183df295" name="JDBC Status"/><con:properties/></con:config></con:testStep><con:testStep type="jdbc" name="CheckCountry" id="ed6ce7e9-7ecc-4ce2-8401-cbb0288b0133"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/sakila?user=root&amp;password=root@1234</con:connectionString><con:query>select * from country where COUNTRY.COUNTRY_ID=:countryid </con:query><con:assertion type="JDBC Status" id="9c022134-3fd9-4cf0-afa1-64e06c6a9701" name="JDBC Status"/><con:properties><con:property><con:name>countryid</con:name><con:value>109</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="datesamplecode" id="f2fd5f83-1c14-46a6-bc1e-2b5ce0e1acc3"><con:settings/><con:config><script>import java.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.temporal.ChronoField;
+
+LocalDate date = LocalDate.now();
+log.info date
+
+DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
+log.info day</script></con:config></con:testStep><con:properties><con:property><con:name>countryid</con:name><con:value>109</con:value></con:property><con:property><con:name>NEXT_DATE</con:name><con:value>2022-08-11</con:value></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:beforeRunScript>//import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.AnalysisStrategy;
+import com.eviware.soapui.model.testsuite.*;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+
+
+//Get current timestamp
+SimpleDateFormat sdf = new SimpleDateFormat('yyyy-MM-dd HH-mm-ss');
+def currentDateString = sdf.format(new Date())
+
+     ExtentReports extent = new ExtentReports();
+	ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\Lomesh\\Desktop\\API Rest Projects\\ExtentReportGenerationDemo\\index_Soapui_Database_+currentDateString.html");
+		
+	extent.setAnalysisStrategy(AnalysisStrategy.SUITE)
+     extent.setSystemInfo("User Name", "Sarita");
+
+     projectName = runner.project.name//project name
+     spark.config().setTheme(Theme.DARK);
+     spark.config().setDocumentTitle("TestReport");
+	spark.config().setReportName("Automation Project Report");
+	extent.attachReporter(spark);
+
+	//Looping through all the test suites. Kindly note the test suites that are disables will not be considered.
+ runner.project.testSuiteList.each{
+ testSuite ->
+ if(!testSuite.isDisabled()){
+ testsuite_logger = extent.createTest(testSuite.getName()).assignAuthor("Sari_1 Tanay").assignCategory("Functional Testing");
+//Looping throught all test enabled test cases for all test suites
+ testSuite.testCaseList.each{
+  testCase->
+  if(!testCase.isDisabled()){
+    testcase_logger = testsuite_logger.createNode(testCase.getName()).;
+    testCase.testStepList.each{
+//Looping through all test steps that are assertable
+     testStep ->
+      if( testStep instanceof Assertable &amp;&amp; (!testStep.isDisabled())){
+       assertionStatus = []
+       testStep.getAssertionList().each{
+        assertion ->
+         assertionStatus.add(assertion.getStatus().toString()+" - "+assertion.getLabel())
+      }
+   logger = testcase_logger.createNode(testStep.getName());
+   assertionStatus.each{
+    if(it.startsWith("VALID -")){
+     logger.log(Status.PASS, MarkupHelper.createLabel(it, ExtentColor.GREEN));
+    } else if(it.startsWith("FAILED -")){
+     logger.log(Status.FAIL, MarkupHelper.createLabel(it, ExtentColor.RED));
+    } else {
+     logger.log(Status.INFO, MarkupHelper.createLabel(it, ExtentColor.BLUE));
+    }
+   }
+   testcase_logger.assignCategory(testSuite.name + ' - '+testCase.getName())
+      }
+      }
+   } 
+  }  
+ }
+}
+//Generating Output
+extent.flush();</con:beforeRunScript><con:sensitiveInformation/></con:soapui-project>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="05bc43cf-ad78-4a14-9cac-aef5f04e8d98" activeEnvironment="Default" name="MyPractice_PlaceADD_Del_Project" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" encryptionMode="Not encrypted" updated="3.20.2 2022-02-16T13:03:17Z" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="c42c0ce7-0fe3-4c7a-8550-32d91e1131bf" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://216.10.245.166" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://216.10.245.166</con:endpoint></con:endpoints><con:resource name="" path="" id="ed63671d-84d2-4cef-8833-391637797651"><con:settings/><con:parameters/><con:resource name="json" path="/maps/api/place/add/json" id="3728aa3b-c0b7-4532-99a7-abdc06add6c0"><con:settings/><con:parameters><con:parameter><con:name>key</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Method 1" id="732df354-c982-43b7-9539-c8bbf99f1d64" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:json="http://216.10.245.166/maps/api/place/add/json">json:Response</con:element></con:representation><con:request name="Request 1" id="27081fab-f01c-425d-854e-523cab477909" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://216.10.245.166</con:endpoint><con:request>{
+  "location":{
+    "lat": -38.3834454,
+    "lng": 33.42723
+  }, 
+   "accuracy":50,
+   "name":"Frontline house",
+   "phone_number":"(+91)9838933937",
+   "address":"2974,ghfd, cohen 09",
+   "types":["shoe park","shop1"],
+   "website":"http://google.com",
+   "language":"French-IN"
+} </con:request><con:originalUri>http://216.10.245.166/maps/api/place/add/json</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="key" value="qaclick123" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>key</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="json" path="/maps/api/place/delete/json" id="52cc37b2-de7f-410d-acb4-e27baeb60816"><con:settings/><con:parameters><con:parameter><con:name>key</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Method 1" id="1a1bc90a-ffca-4e05-9bbf-8a2ddf48ccf6" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:json="http://216.10.245.166/maps/api/place/delete/json">json:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element xmlns:json="http://216.10.245.166/maps/api/place/delete/json">json:Fault</con:element></con:representation><con:request name="Request 1" id="65fdfca2-fc94-4a78-8bea-fde5f13ee2be" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://216.10.245.166</con:endpoint><con:request>{
+	"place_id":"3e836c6106efa9607c088cd0f213812d"
+}
+</con:request><con:originalUri>http://216.10.245.166/maps/api/place/delete/json</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="key" value="qaclick123" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>key</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:resource></con:interface><con:testSuite id="e128aab0-7bdc-4514-be6c-127c6333eff7" name="E2E_Test"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="36d3f9c4-11a8-4620-afdb-078b0dd39118" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Add_Delete_Place_TestCase" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="AddPlace" id="d9835d1c-3fba-44c2-9622-7a9d39197e4d"><con:settings/><con:config service="http://216.10.245.166" resourcePath="/maps/api/place/add/json" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="AddPlace" id="27081fab-f01c-425d-854e-523cab477909" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://216.10.245.166</con:endpoint><con:request>{
+  "location":{
+    "lat": -38.3834454,
+    "lng": 33.42723
+  }, 
+   "accuracy":50,
+   "name":"Frontline house",
+   "phone_number":"(+91)9838933937",
+   "address":"2974,ghfd, cohen 09",
+   "types":["shoe park","shop1"],
+   "website":"http://google.com",
+   "language":"French-IN"
+} </con:request><con:originalUri>http://216.10.245.166/maps/api/place/add/json</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="key" value="${#TestSuit#key}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="10e09fde-6dc6-45cd-b4f4-f0fdaf655a9a"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>place_id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>AddPlace</con:sourceStep><con:sourcePath/><con:targetType>Request</con:targetType><con:targetStep>DeletePlace</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="DeletePlace" id="050bf19e-c5a4-490f-8c66-184ca262c21c"><con:settings/><con:config service="http://216.10.245.166" resourcePath="/maps/api/place/delete/json" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DeletePlace" id="65fdfca2-fc94-4a78-8bea-fde5f13ee2be" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://216.10.245.166</con:endpoint><con:request>{"status":"OK","place_id":"36e8a3f1204c62a4f5cb749b2dc03023","scope":"APP","reference":"360f008378c4ca2dd1895dbb498e0eb7360f008378c4ca2dd1895dbb498e0eb7","id":"360f008378c4ca2dd1895dbb498e0eb7"}</con:request><con:originalUri>http://216.10.245.166/maps/api/place/delete/json</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="key" value="${#TestSuit#key}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:loadTest id="cbef8a5e-fdef-42f9-bd7e-2628d047c479" name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting><con:setting id="hasBeenConvertedToLoadUITest">true</con:setting></con:settings><con:threadCount>10</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval><con:reportParameters/></con:loadTest><con:properties/><con:reportParameters/><con:securityTest id="341a4f11-aa50-4990-9cea-6d0d562dba22" name="SecurityTest 1" failOnError="true" testCaseId="36d3f9c4-11a8-4620-afdb-078b0dd39118"><con:settings/><con:properties/><con:reportParameters/></con:securityTest></con:testCase><con:properties><con:property><con:name>baseurl</con:name><con:value>http://216.10.245.166</con:value></con:property><con:property><con:name>key</con:name><con:value>qaclick123</con:value></con:property></con:properties><con:tearDownScript>//Importing all necessary packages
+
+import com.eviware.soapui.model.testsuite.*;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.AnalysisStrategy;
+import java.text.*;
+
+//Get current timestamp
+SimpleDateFormat sdf = new SimpleDateFormat('yyyy-MM-dd HH-mm-ss');
+def currentDateString = sdf.format(new Date())
+
+//Creating necessary objects of Extent Reported
+ExtentHtmlReporter htmlReporter;
+ExtentReports extent;
+ExtentTest logger;
+ExtentSparkReporter spark;
+
+/*
+Defining output folder.
+Kindly note context.expand('${projectDir}') will give the current Project output file directory as output.
+*/
+
+def outputFolder = context.expand('${projectDir}')+File.separator+'Reports_'+currentDateString
+spark = new ExtentSparkReporter(outputFolder);
+htmlReporter = new ExtentHtmlReporter(outputFolder+File.separator+"Report_"+currentDateString +".html");
+extent = new ExtentReports();
+extent.attachReporter(htmlReporter);
+extent.attachReporter(spark);
+extent.setAnalysisStrategy(AnalysisStrategy.SUITE)
+extent.setSystemInfo("User Name", "Sumeet Agrawal");
+projectName = runner.project.name
+htmlReporter.config().setDocumentTitle("Report - "+ projectName + currentDateString );
+htmlReporter.config().setReportName(projectName +' - ' + currentDateString );
+htmlReporter.config().setTheme(Theme.STANDARD);
+htmlReporter.config().setTimeStampFormat("yyyy-MM-dd HH:mm:ss")
+
+//Looping through all the test suites. Kindly note the test suites that are disables will not be considered.
+runner.project.testSuiteList.each{
+ testSuite ->
+ if(!testSuite.isDisabled()){
+ testsuite_logger = extent.createTest(testSuite.getName());
+//Looping throught all test enabled test cases for all test suites
+ testSuite.testCaseList.each{
+  testCase->
+  if(!testCase.isDisabled()){
+    testcase_logger = testsuite_logger.createNode(testCase.getName());
+    testCase.testStepList.each{
+//Looping through all test steps that are assertable
+     testStep ->
+      if( testStep instanceof Assertable &amp;&amp; (!testStep.isDisabled())){
+       assertionStatus = []
+       testStep.getAssertionList().each{
+        assertion ->
+         assertionStatus.add(assertion.getStatus().toString()+" - "+assertion.getLabel())
+      }
+   logger = testcase_logger.createNode(testStep.getName());
+   assertionStatus.each{
+    if(it.startsWith("VALID -")){
+     logger.log(Status.PASS, MarkupHelper.createLabel(it, ExtentColor.GREEN));
+    } else if(it.startsWith("FAILED -")){
+     logger.log(Status.FAIL, MarkupHelper.createLabel(it, ExtentColor.RED));
+    } else {
+     logger.log(Status.INFO, MarkupHelper.createLabel(it, ExtentColor.BLUE));
+    }
+   }
+   testcase_logger.assignCategory(testSuite.name + ' - '+testCase.getName())
+      }
+      }
+   } 
+  }  
+ }
+}
+//Generating Output
+extent.flush();</con:tearDownScript><con:reportParameters/></con:testSuite><con:properties><con:property><con:name>baseurl</con:name><con:value>http://216.10.245.166</con:value></con:property></con:properties><con:wssContainer/><con:databaseConnectionContainer/><con:jmsConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/><con:authRepository/><con:loadUiTest name="LoadTest 1" id="ac3efb57-ceb2-46e2-9132-8a453bd656eb"><con:settings><con:setting id="soapUIObjectSourceId">36d3f9c4-11a8-4620-afdb-078b0dd39118</con:setting><con:setting id="convertedFromLoadTestModelItemId">cbef8a5e-fdef-42f9-bd7e-2628d047c479</con:setting></con:settings><con1:loadui-project id="b58f6687-860b-4c4d-85a1-80ac3c48f264" label="LoadTest 1" xmlns:con1="http://eviware.com/loadui/config"><con1:properties><con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/><con1:property propagates="true" key="CanvasItem.abortOnFinish" type="java.lang.Boolean">false</con1:property><con1:property propagates="true" key="ModelItem.saveReport" type="java.lang.Boolean">false</con1:property><con1:property propagates="true" key="ModelItem.reportFolder" type="java.lang.String"/><con1:property propagates="true" key="ModelItem.reportFormat" type="java.lang.String"/><con1:property propagates="true" key="Temporary project" type="java.lang.String"/><con1:property propagates="true" key="ModelItem.rate" type="java.lang.Long">10</con1:property><con1:property propagates="true" key="ModelItem.loadDistributionType" type="com.smartbear.load.facade.LoadDistributionType">PerScenario</con1:property><con1:property propagates="true" key="ModelItem.remoteMode" type="java.lang.String"/><con1:property propagates="true" key="ModelItem.id" type="java.lang.String">ac3efb57-ceb2-46e2-9132-8a453bd656eb</con1:property></con1:properties><con1:attributes><con1:property key="limits">Time=60;</con1:property></con1:attributes><con1:addons/><con1:scene label="New Scenario" id="307f93ba-cf30-4e7b-be01-4d7e2715b68c"><con1:properties><con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/><con1:property propagates="true" key="CanvasItem.abortOnFinish" type="java.lang.Boolean">false</con1:property><con1:property propagates="true" key="SceneItem.followProject" type="java.lang.Boolean">true</con1:property><con1:property propagates="true" key="SceneItem.scenarioRatePercentage" type="java.lang.Long">100</con1:property><con1:property propagates="true" key="SceneItem.scenarioRateSpecific" type="java.lang.Long">10</con1:property><con1:property propagates="true" key="ModelItem.samplerOutputLevel" type="com.eviware.loadui.api.component.SoapUISamplerOutputLevel">TestCaseAndAllTestSteps</con1:property></con1:properties><con1:attributes><con1:property key="limits">Time=60;</con1:property></con1:attributes><con1:addons/><con1:component type="com.eviware.loadui.impl.component.IntervalComponent" label="Interval 1" id="48853f8c-d5a4-4aad-8169-b287ad269ff1" category="Scheduler"><con1:properties><con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/><con1:property propagates="true" key="stateProperty" type="java.lang.Boolean">true</con1:property><con1:property propagates="true" key="startAt" type="java.lang.Long">0</con1:property><con1:property propagates="true" key="duration" type="java.lang.Long">5</con1:property><con1:property propagates="true" key="unit" type="java.lang.String">Sec</con1:property><con1:property propagates="true" key="mode" type="java.lang.String">Single</con1:property><con1:property propagates="true" key="defaultMode" type="java.lang.Boolean">true</con1:property></con1:properties><con1:attributes><con1:property key="com.eviware.loadui.api.model.ComponentItem@type">Interval</con1:property></con1:attributes><con1:addons/></con1:component><con1:component type="com.eviware.loadui.impl.component.generators.FixedVU" label="Fixed Load 2" id="cc8ffcbb-6e74-409d-ab8e-49c2c11a6f40" category="Generators"><con1:properties><con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/><con1:property propagates="true" key="stateProperty" type="java.lang.Boolean">true</con1:property><con1:property propagates="true" key="limitVU" type="java.lang.Long">10</con1:property><con1:property propagates="true" key="load" type="java.lang.Long">10</con1:property><con1:property propagates="true" key="interval" type="java.lang.Long">1000</con1:property></con1:properties><con1:attributes><con1:property key="com.eviware.loadui.api.model.ComponentItem@type">Fixed Load</con1:property></con1:attributes><con1:addons/></con1:component><con1:component type="com.eviware.loadui.components.soapui.SoapUISamplerComponent" label="E2E_Test:Add_Delete_Place_TestCase" id="bd0a59ab-6283-40d4-aa22-3a949bf3c425" category="Runners"><con1:properties><con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/><con1:property propagates="true" key="concurrentSamples" type="java.lang.Long">1000</con1:property><con1:property propagates="true" key="property_name_is_not_relevant_for_private_property" type="java.lang.Long">9223372036854775807</con1:property><con1:property propagates="true" key="maxQueueSize" type="java.lang.Long">1000</con1:property><con1:property propagates="true" key="countDiscarded" type="java.lang.Boolean">false</con1:property><con1:property propagates="true" key="disabledTestSteps" type="java.lang.String"/><con1:property propagates="true" key="_thinkTime" type="java.lang.Long">0</con1:property><con1:property propagates="true" key="ReadyApiTestCase" type="com.eviware.soapui.impl.wsdl.testcase.WsdlTestCase">36d3f9c4-11a8-4620-afdb-078b0dd39118</con1:property><con1:property propagates="true" key="raiseError" type="java.lang.Boolean">true</con1:property><con1:property propagates="true" key="outputTestCaseProperties" type="java.lang.Boolean">true</con1:property><con1:property propagates="true" key="OutputLevel" type="java.lang.String">TestCase only</con1:property><con1:property propagates="true" key="closeConnectionsAfterRequest" type="java.lang.Boolean">false</con1:property><con1:property propagates="true" key="disableSoapuiAssertions" type="java.lang.Boolean">false</con1:property><con1:property propagates="true" key="forceShareDatasources" type="java.lang.Boolean">true</con1:property></con1:properties><con1:attributes><con1:property key="com.eviware.loadui.api.model.ComponentItem@type">Ready API TestCase Runner</con1:property></con1:attributes><con1:addons/></con1:component><con1:connection outputTerminalId="48853f8c-d5a4-4aad-8169-b287ad269ff1/outgoingTerminal" inputTerminalId="cc8ffcbb-6e74-409d-ab8e-49c2c11a6f40/stateTerminal"/><con1:connection outputTerminalId="cc8ffcbb-6e74-409d-ab8e-49c2c11a6f40/triggerTerminal" inputTerminalId="bd0a59ab-6283-40d4-aa22-3a949bf3c425/triggerTerminal"/><con1:connection outputTerminalId="bd0a59ab-6283-40d4-aa22-3a949bf3c425/runningTerminal" inputTerminalId="cc8ffcbb-6e74-409d-ab8e-49c2c11a6f40/Sample Count"/></con1:scene><con1:statistics><con1:page title="DefaultLoadUIStatisticPage"><con1:chartGroup type="com.eviware.loadui.api.statistics.model.chart.line.LineChartView" title="" groupType="Monitors"><con1:attributes><con1:property key="GroupId">aff689b1-a447-4f8f-891c-127922ad9f0a</con1:property></con1:attributes></con1:chartGroup></con1:page></con1:statistics></con1:loadui-project><con:loadUITestScenario projectId="b58f6687-860b-4c4d-85a1-80ac3c48f264" scenarioId="307f93ba-cf30-4e7b-be01-4d7e2715b68c" name="New Scenario" id="63e29f78-62bf-4917-ae68-5d62ea510fb4"><con:settings/></con:loadUITestScenario><con:loadUIPanelData id="040d165a-e631-4374-965c-b5ddf238e0b4"><con:panel>Log</con:panel></con:loadUIPanelData><con:setupScript xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:teardownScript xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:reportParameters/></con:loadUiTest><con:tags/></con:soapui-project>
